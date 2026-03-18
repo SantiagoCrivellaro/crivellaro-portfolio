@@ -1,0 +1,26 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import PricingCard from './PricingCard.astro';
+import pricing from '../data/pricing.json';
+---
+
+<section id="pricing" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Pricing"
+      subtitle="Transparent pricing for every stage of your AI journey. All projects start with a free discovery call."
+    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {pricing.map((tier) => (
+        <PricingCard
+          name={tier.name}
+          price={tier.price}
+          period={tier.period}
+          description={tier.description}
+          features={tier.features}
+          featured={tier.featured}
+        />
+      ))}
+    </div>
+  </div>
+</section>

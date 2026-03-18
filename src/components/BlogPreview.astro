@@ -1,0 +1,68 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Tag from './Tag.astro';
+
+const posts = [
+  {
+    slug: 'how-i-reduced-support-tickets-62-percent',
+    title: 'How I Reduced Support Tickets by 62% With a GPT Chatbot',
+    excerpt: 'A step-by-step breakdown of building an AI customer support bot for an e-commerce brand — from initial discovery to production deployment.',
+    date: '2026-02-15',
+    readTime: '8 min read',
+    tags: ['Case Study', 'Chatbots'],
+  },
+  {
+    slug: 'ai-automation-for-small-business',
+    title: '5 AI Automations Every Small Business Should Implement in 2026',
+    excerpt: 'You don\'t need a massive budget to benefit from AI. Here are five practical automations that pay for themselves within the first month.',
+    date: '2026-01-28',
+    readTime: '6 min read',
+    tags: ['Guide', 'Automation'],
+  },
+  {
+    slug: 'chatgpt-vs-claude-for-business',
+    title: 'ChatGPT vs Claude: Which AI Model Is Best for Your Business?',
+    excerpt: 'An honest comparison of GPT-4 and Claude for real-world business applications — cost, quality, speed, and when to use each.',
+    date: '2026-01-10',
+    readTime: '10 min read',
+    tags: ['Comparison', 'AI Models'],
+  },
+];
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+
+<section id="blog" class="py-20 lg:py-28 bg-surface-900/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Blog"
+      subtitle="Insights, case studies, and practical guides on AI automation for business."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <article class="card-base overflow-hidden scroll-animate group flex flex-col">
+          <!-- Gradient header bar -->
+          <div class="h-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500" aria-hidden="true"></div>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center gap-3 text-xs text-surface-muted mb-3">
+              <time datetime={post.date}>{formatDate(post.date)}</time>
+              <span aria-hidden="true">&middot;</span>
+              <span>{post.readTime}</span>
+            </div>
+            <h3 class="text-lg font-semibold text-surface-text mb-3 group-hover:text-cyan-400 transition-colors leading-snug">
+              <a href={`/blog/${post.slug}`} class="hover:underline underline-offset-4">
+                {post.title}
+              </a>
+            </h3>
+            <p class="text-surface-muted text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
+            <div class="flex flex-wrap gap-2">
+              {post.tags.map((tag) => <Tag>{tag}</Tag>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

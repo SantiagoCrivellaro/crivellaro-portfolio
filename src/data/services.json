@@ -1,0 +1,22 @@
+[
+  {
+    "icon": "bot",
+    "title": "Custom AI Chatbots",
+    "description": "Intelligent conversational agents tailored to your business. From customer support bots to internal knowledge assistants, powered by the latest LLM technology."
+  },
+  {
+    "icon": "automation",
+    "title": "Workflow Automation",
+    "description": "End-to-end automation of repetitive business processes. Connect your tools, eliminate manual data entry, and reclaim hundreds of hours per month."
+  },
+  {
+    "icon": "brain",
+    "title": "AI Strategy Consulting",
+    "description": "Expert guidance on integrating AI into your operations. Identify high-impact opportunities, build a roadmap, and avoid costly mistakes."
+  },
+  {
+    "icon": "code",
+    "title": "Custom AI Development",
+    "description": "Bespoke AI solutions built from scratch. Fine-tuned models, RAG pipelines, intelligent document processing, and API integrations."
+  }
+]

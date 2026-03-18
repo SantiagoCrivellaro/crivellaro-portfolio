@@ -1,0 +1,54 @@
+---
+import IconCheck from './icons/IconCheck.astro';
+
+interface Props {
+  name: string;
+  price: string;
+  period: string;
+  description: string;
+  features: string[];
+  featured?: boolean;
+}
+
+const { name, price, period, description, features, featured = false } = Astro.props;
+---
+
+<div class:list={[
+  'card-base p-6 lg:p-8 scroll-animate relative flex flex-col',
+  featured && 'border-cyan-500/50 shadow-[0_0_40px_-5px] shadow-cyan-500/20',
+]}>
+  {featured && (
+    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+      <span class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+        Popular
+      </span>
+    </div>
+  )}
+  <div class="mb-6">
+    <h3 class="text-lg font-semibold text-surface-text mb-2">{name}</h3>
+    <p class="text-surface-muted text-sm mb-4">{description}</p>
+    <div class="flex items-baseline gap-1">
+      <span class="text-3xl font-bold gradient-text">{price}</span>
+      <span class="text-surface-muted text-sm">/ {period}</span>
+    </div>
+  </div>
+  <ul class="space-y-3 mb-8 flex-1">
+    {features.map((feature) => (
+      <li class="flex items-start gap-3 text-sm text-surface-muted">
+        <IconCheck class="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
+        <span>{feature}</span>
+      </li>
+    ))}
+  </ul>
+  <a
+    href="#contact"
+    class:list={[
+      'w-full inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 text-center btn-hover',
+      featured
+        ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 neon-glow'
+        : 'bg-surface-800 text-surface-text border border-surface-700 hover:border-cyan-500/40 hover:text-cyan-400',
+    ]}
+  >
+    Get Started
+  </a>
+</div>

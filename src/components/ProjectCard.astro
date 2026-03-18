@@ -1,0 +1,73 @@
+---
+import Tag from './Tag.astro';
+import IconExternalLink from './icons/IconExternalLink.astro';
+import IconPlay from './icons/IconPlay.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  liveUrl?: string | null;
+  videoUrl?: string | null;
+  slug?: string | null;
+}
+
+const { title, description, image, tags, liveUrl, videoUrl, slug } = Astro.props;
+---
+
+<article class="card-base overflow-hidden scroll-animate group">
+  <div class="aspect-video relative overflow-hidden bg-surface-800">
+    <img
+      src={image}
+      alt={`Screenshot of ${title} project`}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-surface-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
+  </div>
+  <div class="p-6">
+    <h3 class="text-lg font-semibold text-surface-text mb-2">
+      {slug ? (
+        <a href={`/projects/${slug}`} class="hover:text-cyan-400 transition-colors">{title}</a>
+      ) : title}
+    </h3>
+    <p class="text-surface-muted text-sm leading-relaxed line-clamp-3 mb-4">{description}</p>
+    <div class="flex flex-wrap gap-2 mb-5">
+      {tags.map((tag) => <Tag>{tag}</Tag>)}
+    </div>
+    <div class="flex flex-wrap gap-3">
+      {slug && (
+        <a
+          href={`/projects/${slug}`}
+          class="inline-flex items-center gap-1.5 text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+        >
+          Read Case Study &rarr;
+        </a>
+      )}
+      {liveUrl && (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+        >
+          <IconExternalLink class="w-4 h-4" />
+          Live Demo
+        </a>
+      )}
+      {videoUrl && (
+        <button
+          type="button"
+          class="inline-flex items-center gap-1.5 text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium cursor-pointer"
+          data-video-url={videoUrl}
+          aria-label={`Watch demo video for ${title}`}
+        >
+          <IconPlay class="w-4 h-4" />
+          Watch Demo
+        </button>
+      )}
+    </div>
+  </div>
+</article>

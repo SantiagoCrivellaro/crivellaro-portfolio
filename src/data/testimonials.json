@@ -1,0 +1,20 @@
+[
+  {
+    "quote": "Our support ticket volume dropped by 62% within the first month. The chatbot handles everything from order tracking to product questions, and our customers actually prefer it to waiting for a human agent.",
+    "name": "Sarah Chen",
+    "role": "Head of Operations",
+    "company": "ModernRetail Co."
+  },
+  {
+    "quote": "The automation pipeline saved our team roughly 30 hours per week on lead qualification alone. We went from manually checking every inquiry to having AI-scored leads delivered right to our Slack in real time.",
+    "name": "Marcus Rivera",
+    "role": "Sales Director",
+    "company": "Summit Real Estate Group"
+  },
+  {
+    "quote": "What impressed me most was the strategic thinking. It wasn't just about building a bot — they helped us rethink our entire content workflow. We now produce 4x the content with the same team.",
+    "name": "Anika Patel",
+    "role": "Marketing Lead",
+    "company": "GrowthPath Digital"
+  }
+]

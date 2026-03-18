@@ -1,0 +1,27 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+import caseStudies from '../data/case-studies.json';
+---
+
+<section id="projects" class="py-20 lg:py-28 bg-surface-900/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Featured Projects"
+      subtitle="Real-world AI automation solutions I've built for businesses across industries."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {caseStudies.map((project) => (
+        <ProjectCard
+          title={project.title}
+          description={project.subtitle}
+          image={project.image}
+          tags={project.tags}
+          liveUrl={project.liveUrl}
+          videoUrl={project.videoUrl}
+          slug={project.slug}
+        />
+      ))}
+    </div>
+  </div>
+</section>

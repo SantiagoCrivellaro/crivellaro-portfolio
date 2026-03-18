@@ -1,0 +1,96 @@
+---
+import Button from './Button.astro';
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated gradient background -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-surface-950 via-blue-500/10 to-purple-500/10 bg-[length:200%_200%] animate-gradient-shift"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Grid pattern overlay -->
+  <div
+    class="absolute inset-0 opacity-[0.03]"
+    style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Constellation / particle dots -->
+  <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Dots -->
+    <circle cx="10%" cy="20%" r="1.5" fill="#22d3ee" class="animate-pulse-glow" />
+    <circle cx="25%" cy="15%" r="1" fill="#3b82f6" class="animate-pulse-glow" style="animation-delay: 0.5s" />
+    <circle cx="40%" cy="30%" r="1.5" fill="#a855f7" class="animate-pulse-glow" style="animation-delay: 1s" />
+    <circle cx="65%" cy="12%" r="1" fill="#22d3ee" class="animate-pulse-glow" style="animation-delay: 1.5s" />
+    <circle cx="80%" cy="25%" r="1.5" fill="#3b82f6" class="animate-pulse-glow" style="animation-delay: 0.3s" />
+    <circle cx="90%" cy="40%" r="1" fill="#a855f7" class="animate-pulse-glow" style="animation-delay: 0.8s" />
+    <circle cx="15%" cy="70%" r="1" fill="#3b82f6" class="animate-pulse-glow" style="animation-delay: 1.2s" />
+    <circle cx="35%" cy="80%" r="1.5" fill="#22d3ee" class="animate-pulse-glow" style="animation-delay: 0.7s" />
+    <circle cx="55%" cy="75%" r="1" fill="#a855f7" class="animate-pulse-glow" style="animation-delay: 1.8s" />
+    <circle cx="75%" cy="85%" r="1.5" fill="#3b82f6" class="animate-pulse-glow" style="animation-delay: 0.4s" />
+    <circle cx="92%" cy="65%" r="1" fill="#22d3ee" class="animate-pulse-glow" style="animation-delay: 1.3s" />
+    <circle cx="5%" cy="45%" r="1.5" fill="#a855f7" class="animate-pulse-glow" style="animation-delay: 0.9s" />
+    <circle cx="50%" cy="50%" r="1" fill="#22d3ee" class="animate-pulse-glow" style="animation-delay: 1.6s" />
+    <!-- Connecting lines -->
+    <line x1="10%" y1="20%" x2="25%" y2="15%" stroke="#22d3ee" stroke-width="0.3" opacity="0.4" />
+    <line x1="25%" y1="15%" x2="40%" y2="30%" stroke="#3b82f6" stroke-width="0.3" opacity="0.3" />
+    <line x1="65%" y1="12%" x2="80%" y2="25%" stroke="#22d3ee" stroke-width="0.3" opacity="0.4" />
+    <line x1="80%" y1="25%" x2="90%" y2="40%" stroke="#a855f7" stroke-width="0.3" opacity="0.3" />
+    <line x1="15%" y1="70%" x2="35%" y2="80%" stroke="#3b82f6" stroke-width="0.3" opacity="0.3" />
+    <line x1="55%" y1="75%" x2="75%" y2="85%" stroke="#a855f7" stroke-width="0.3" opacity="0.4" />
+    <line x1="40%" y1="30%" x2="50%" y2="50%" stroke="#22d3ee" stroke-width="0.3" opacity="0.2" />
+    <line x1="50%" y1="50%" x2="65%" y2="12%" stroke="#3b82f6" stroke-width="0.3" opacity="0.2" />
+    <line x1="5%" y1="45%" x2="15%" y2="70%" stroke="#a855f7" stroke-width="0.3" opacity="0.3" />
+    <line x1="92%" y1="65%" x2="75%" y2="85%" stroke="#22d3ee" stroke-width="0.3" opacity="0.3" />
+  </svg>
+
+  <!-- Glow orbs -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] animate-pulse-glow" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] animate-pulse-glow" style="animation-delay: 1s" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="scroll-animate">
+      <p class="text-cyan-400 text-sm sm:text-base font-semibold tracking-widest uppercase mb-4">
+        Santiago Crivellaro &mdash; AI Automation Specialist
+      </p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+        I Build <span class="gradient-text">Intelligent Systems</span> That Work While You Sleep
+      </h1>
+      <p class="text-surface-muted text-lg sm:text-xl max-w-2xl mx-auto mb-10">
+        From custom AI chatbots to end-to-end workflow automation — I help businesses save time, reduce costs, and scale with AI-powered solutions.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="#projects" variant="primary">
+          See My Work
+        </Button>
+        <Button href="#contact" variant="secondary">
+          Let's Talk
+        </Button>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="mt-16 pt-8 border-t border-surface-700/50 grid grid-cols-3 gap-6 max-w-lg mx-auto">
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-bold gradient-text">62%</p>
+          <p class="text-xs sm:text-sm text-surface-muted mt-1">Fewer Tickets</p>
+        </div>
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-bold gradient-text">30h</p>
+          <p class="text-xs sm:text-sm text-surface-muted mt-1">Saved / Week</p>
+        </div>
+        <div class="text-center">
+          <p class="text-2xl sm:text-3xl font-bold gradient-text">4x</p>
+          <p class="text-xs sm:text-sm text-surface-muted mt-1">Content Output</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+    <svg class="w-6 h-6 text-surface-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path d="M19 14l-7 7m0 0l-7-7" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+</section>

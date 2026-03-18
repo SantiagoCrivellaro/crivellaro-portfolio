@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cyan-400: oklch(0.82 0.15 192);
+  --color-cyan-500: oklch(0.75 0.15 192);
+  --color-blue-400: oklch(0.72 0.15 248);
+  --color-blue-500: oklch(0.65 0.15 248);
+  --color-purple-400: oklch(0.72 0.15 295);
+  --color-purple-500: oklch(0.65 0.15 295);
+
+  --color-surface-950: oklch(0.13 0.01 260);
+  --color-surface-900: oklch(0.17 0.01 260);
+  --color-surface-800: oklch(0.22 0.015 260);
+  --color-surface-700: oklch(0.28 0.015 260);
+
+  --color-surface-text: oklch(0.92 0.01 260);
+  --color-surface-muted: oklch(0.65 0.01 260);
+
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
+  --animate-fade-in-up: fade-in-up 0.6s ease both;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-surface-950 text-surface-text font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-cyan-500/30 text-white;
+  }
+}
+
+@layer components {
+  .card-base {
+    @apply bg-surface-900 border border-surface-700 rounded-2xl transition-all duration-300;
+    transform: translateY(0);
+  }
+
+  .card-base:hover {
+    @apply border-cyan-500/40 shadow-[0_0_30px_-5px] shadow-cyan-500/20;
+    transform: translateY(-4px);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .neon-glow {
+    @apply shadow-[0_0_20px_-3px] shadow-cyan-500/30;
+  }
+
+  .btn-hover {
+    @apply transition-all duration-300;
+    transform: translateY(0) scale(1);
+  }
+
+  .btn-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+    @apply shadow-[0_0_25px_-3px] shadow-cyan-500/40;
+  }
+
+  .btn-hover:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-animate {
+    opacity: 1;
+    transform: none;
+  }
+}

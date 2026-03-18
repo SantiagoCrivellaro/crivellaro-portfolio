@@ -1,0 +1,127 @@
+[
+  {
+    "slug": "ecommerce-support-bot",
+    "title": "E-Commerce Support Bot",
+    "subtitle": "Reducing support tickets by 62% with a GPT-4 powered chatbot",
+    "image": "/images/projects/ecommerce-bot.svg",
+    "tags": ["ChatGPT API", "Python", "Shopify", "RAG"],
+    "liveUrl": "https://example.com",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "client": "ModernRetail Co.",
+    "industry": "E-Commerce",
+    "timeline": "3 weeks",
+    "problem": "ModernRetail Co. was drowning in repetitive customer support tickets — order tracking, return requests, and product questions made up 80% of their volume. Their 4-person support team was spending most of their day on copy-paste responses, leaving complex issues unresolved for days.",
+    "approach": [
+      "Conducted a 2-day audit of their Zendesk history to identify the top 20 most common ticket types",
+      "Built a RAG pipeline that ingests their product catalog, return policies, and shipping data in real-time from Shopify",
+      "Developed a GPT-4 powered chatbot with custom system prompts tuned to their brand voice",
+      "Integrated with Shopify APIs for live order tracking and return initiation",
+      "Added a smart escalation system — the bot detects frustration and routes to a human agent automatically"
+    ],
+    "results": [
+      { "metric": "62%", "label": "Fewer support tickets" },
+      { "metric": "< 3s", "label": "Average response time" },
+      { "metric": "4.7/5", "label": "Customer satisfaction" },
+      { "metric": "$8,200", "label": "Monthly savings" }
+    ],
+    "testimonial": {
+      "quote": "Our support ticket volume dropped by 62% within the first month. The chatbot handles everything from order tracking to product questions, and our customers actually prefer it to waiting for a human agent.",
+      "name": "Sarah Chen",
+      "role": "Head of Operations, ModernRetail Co."
+    },
+    "techStack": ["GPT-4 API", "Python", "FastAPI", "Shopify API", "Pinecone (vector DB)", "Vercel"]
+  },
+  {
+    "slug": "legal-document-analyzer",
+    "title": "Legal Document Analyzer",
+    "subtitle": "AI-powered contract analysis that extracts key clauses and flags risks in seconds",
+    "image": "/images/projects/legal-analyzer.svg",
+    "tags": ["LangChain", "GPT-4", "FastAPI", "React"],
+    "liveUrl": "https://example.com",
+    "videoUrl": null,
+    "client": "Hartfield & Associates",
+    "industry": "Legal",
+    "timeline": "5 weeks",
+    "problem": "Hartfield & Associates' junior lawyers spent 4-6 hours per contract on manual review — reading through 50+ page documents to extract key clauses, identify risks, and write summaries. The firm was scaling and couldn't hire fast enough to keep up with contract volume.",
+    "approach": [
+      "Analyzed 200+ previously reviewed contracts to understand the firm's review criteria and risk taxonomy",
+      "Built a document processing pipeline that handles PDFs, Word docs, and scanned images (OCR)",
+      "Used LangChain with GPT-4 to create specialized extraction chains for 15 clause types",
+      "Developed a risk scoring algorithm that flags high-risk clauses with explanations",
+      "Built a React dashboard that presents extracted data, highlights, and allows lawyer annotations",
+      "Integrated with their existing NetDocuments DMS via API"
+    ],
+    "results": [
+      { "metric": "85%", "label": "Faster review time" },
+      { "metric": "15", "label": "Clause types extracted" },
+      { "metric": "97%", "label": "Extraction accuracy" },
+      { "metric": "3x", "label": "More contracts processed" }
+    ],
+    "testimonial": null,
+    "techStack": ["GPT-4 API", "LangChain", "FastAPI", "React", "PostgreSQL", "NetDocuments API"]
+  },
+  {
+    "slug": "real-estate-lead-qualifier",
+    "title": "Real Estate Lead Qualifier",
+    "subtitle": "Automated pipeline that scores and routes leads in real-time via Slack",
+    "image": "/images/projects/real-estate-leads.svg",
+    "tags": ["Make.com", "OpenAI", "Slack API", "Airtable"],
+    "liveUrl": null,
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "client": "Summit Real Estate Group",
+    "industry": "Real Estate",
+    "timeline": "2 weeks",
+    "problem": "Summit Real Estate Group was receiving 200+ inquiries per week across their website, Zillow, and email. Every inquiry was manually checked by a coordinator who would Google the prospect, assess intent, and assign it to an agent. This took 30+ hours per week and hot leads often sat untouched for hours.",
+    "approach": [
+      "Mapped their existing lead flow from all channels (website forms, Zillow API, email parsing)",
+      "Built an automated ingestion pipeline on Make.com that captures leads from all sources into Airtable",
+      "Used OpenAI to analyze each lead's message for intent signals, budget indicators, and urgency",
+      "Created a scoring algorithm (1-100) based on AI analysis + data enrichment (property type, location, budget range)",
+      "Set up automatic Slack notifications — hot leads (80+) ping the assigned agent immediately, warm leads go into a daily digest"
+    ],
+    "results": [
+      { "metric": "30h", "label": "Saved per week" },
+      { "metric": "< 5min", "label": "Response time for hot leads" },
+      { "metric": "3.2x", "label": "More conversions" },
+      { "metric": "200+", "label": "Leads processed weekly" }
+    ],
+    "testimonial": {
+      "quote": "The automation pipeline saved our team roughly 30 hours per week on lead qualification alone. We went from manually checking every inquiry to having AI-scored leads delivered right to our Slack in real time.",
+      "name": "Marcus Rivera",
+      "role": "Sales Director, Summit Real Estate Group"
+    },
+    "techStack": ["Make.com", "OpenAI API", "Slack API", "Airtable", "Zillow API", "Gmail API"]
+  },
+  {
+    "slug": "content-repurposing-engine",
+    "title": "Content Repurposing Engine",
+    "subtitle": "Turning one blog post into 10+ pieces of content automatically",
+    "image": "/images/projects/content-engine.svg",
+    "tags": ["n8n", "Claude API", "Notion API", "Buffer"],
+    "liveUrl": "https://example.com",
+    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "client": "GrowthPath Digital",
+    "industry": "Marketing Agency",
+    "timeline": "3 weeks",
+    "problem": "GrowthPath Digital was producing one long-form blog post per week but struggling to repurpose it across channels. Their content team would manually rewrite the post into tweets, LinkedIn posts, email newsletters, and Instagram captions — a process that took 8+ hours per post and often didn't happen at all.",
+    "approach": [
+      "Analyzed their brand voice across all channels to create detailed tone-of-voice prompts for each platform",
+      "Built an n8n workflow triggered whenever a new post is published in Notion",
+      "Used Claude API with platform-specific system prompts to generate: 5 tweets/threads, 2 LinkedIn posts, 1 email newsletter, 3 Instagram captions",
+      "Each output is drafted in Buffer (social) and their email platform for human review before publishing",
+      "Added a feedback loop — the team can rate outputs, and the prompts auto-adjust over time"
+    ],
+    "results": [
+      { "metric": "4x", "label": "Content output" },
+      { "metric": "8h", "label": "Saved per post" },
+      { "metric": "10+", "label": "Pieces per blog post" },
+      { "metric": "2min", "label": "From publish to drafts" }
+    ],
+    "testimonial": {
+      "quote": "What impressed me most was the strategic thinking. It wasn't just about building a bot — they helped us rethink our entire content workflow. We now produce 4x the content with the same team.",
+      "name": "Anika Patel",
+      "role": "Marketing Lead, GrowthPath Digital"
+    },
+    "techStack": ["n8n", "Claude API", "Notion API", "Buffer API", "ConvertKit API"]
+  }
+]

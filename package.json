@@ -1,0 +1,21 @@
+{
+  "name": "ai-automation-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preview:cf": "npm run build && npx wrangler pages dev dist --ai AI"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@fontsource-variable/inter": "^5.1.1",
+    "@tailwindcss/vite": "^4.1.3",
+    "astro": "^5.7.10",
+    "tailwindcss": "^4.1.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.75.0"
+  }
+}

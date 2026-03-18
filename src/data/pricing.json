@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Starter",
+    "price": "$500",
+    "period": "one-time",
+    "description": "Perfect for small automations and proof-of-concept projects.",
+    "features": [
+      "Single workflow automation",
+      "Up to 3 tool integrations",
+      "Basic documentation",
+      "1 round of revisions",
+      "Email support for 2 weeks"
+    ],
+    "featured": false
+  },
+  {
+    "name": "Professional",
+    "price": "$2,000",
+    "period": "per project",
+    "description": "Ideal for businesses ready to automate core workflows with AI.",
+    "features": [
+      "Multi-step workflow automation",
+      "Custom AI chatbot or agent",
+      "Up to 8 tool integrations",
+      "Full documentation & training",
+      "3 rounds of revisions",
+      "30 days of support"
+    ],
+    "featured": true
+  },
+  {
+    "name": "Enterprise",
+    "price": "$5,000+",
+    "period": "per project",
+    "description": "End-to-end AI solutions for complex business needs.",
+    "features": [
+      "Full AI system architecture",
+      "Custom model fine-tuning",
+      "Unlimited integrations",
+      "Team training & onboarding",
+      "Priority Slack support",
+      "90 days of maintenance"
+    ],
+    "featured": false
+  },
+  {
+    "name": "Retainer",
+    "price": "$3,000",
+    "period": "per month",
+    "description": "Ongoing AI support and continuous improvement for your systems.",
+    "features": [
+      "20 hours of development/month",
+      "Priority response time",
+      "Proactive optimization",
+      "Monthly performance reports",
+      "Dedicated Slack channel",
+      "Rollover unused hours"
+    ],
+    "featured": false
+  }
+]

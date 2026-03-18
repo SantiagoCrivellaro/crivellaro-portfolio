@@ -1,0 +1,58 @@
+---
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Process', href: '#process' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-950/80 backdrop-blur-lg border-b border-surface-800/50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Main navigation">
+    <a href="#" class="text-xl font-bold gradient-text">Crivellaro</a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="text-sm text-surface-muted hover:text-cyan-400 transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger (CSS checkbox hack) -->
+    <input type="checkbox" id="nav-toggle" class="hidden peer" aria-label="Toggle navigation menu" />
+    <label for="nav-toggle" class="md:hidden relative z-50 cursor-pointer p-2 text-surface-text" aria-label="Open menu">
+      <svg class="w-6 h-6 peer-checked:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="18" y2="18" />
+      </svg>
+    </label>
+
+    <!-- Mobile menu overlay -->
+    <div class="fixed inset-0 bg-surface-950/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 transition-all duration-300 opacity-0 pointer-events-none peer-checked:opacity-100 peer-checked:pointer-events-auto md:hidden">
+      <label for="nav-toggle" class="absolute top-4 right-4 cursor-pointer p-2 text-surface-text" aria-label="Close menu">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+        </svg>
+      </label>
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-2xl font-semibold text-surface-text hover:text-cyan-400 transition-colors duration-200"
+          onclick="document.getElementById('nav-toggle').checked = false"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>

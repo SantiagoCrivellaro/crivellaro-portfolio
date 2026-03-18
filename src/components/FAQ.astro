@@ -1,0 +1,65 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const faqs = [
+  {
+    question: 'How long does a typical project take?',
+    answer: 'Most projects take 2-6 weeks depending on complexity. A simple chatbot or single automation can be done in under 2 weeks. Multi-step systems with custom AI models take 4-6 weeks. You\'ll get a clear timeline in the proposal.',
+  },
+  {
+    question: 'What if I need changes after the project is done?',
+    answer: 'Every project includes at least one round of revisions built into the price. After launch, you get a support period (duration depends on the plan) for bug fixes and tweaks. For ongoing changes, the Retainer plan is the best option.',
+  },
+  {
+    question: 'Do I need technical knowledge to use the solutions you build?',
+    answer: 'No. Everything I build comes with documentation and a hands-on training session. The goal is for your team to operate the system independently. If something breaks, I\'m a message away during the support period.',
+  },
+  {
+    question: 'What tools and platforms do you work with?',
+    answer: 'I work with OpenAI (GPT-4), Claude, LangChain, Python, n8n, Make.com, Zapier, FastAPI, and most popular APIs (Slack, Notion, Airtable, Shopify, HubSpot, etc). If your stack isn\'t listed, just ask — I adapt quickly.',
+  },
+  {
+    question: 'How much does it cost?',
+    answer: 'Projects start at $500 for simple automations and go up to $5,000+ for enterprise solutions. Check the pricing section for details, or book a free discovery call and I\'ll give you an exact quote based on your needs.',
+  },
+  {
+    question: 'Can you work with my existing systems?',
+    answer: 'Absolutely. Integration is a core part of what I do. I connect AI solutions to your existing tools — CRMs, databases, communication platforms, document management systems — via APIs and webhooks.',
+  },
+  {
+    question: 'Do you offer ongoing maintenance?',
+    answer: 'Yes. The Retainer plan gives you 20 hours/month of development, priority support, and proactive optimization. It\'s ideal for businesses that want continuous improvement of their AI systems.',
+  },
+];
+---
+
+<section id="faq" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="Frequently Asked Questions"
+      subtitle="Answers to the most common questions about working with me."
+    />
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, i) => (
+        <details class="card-base group scroll-animate" name="faq">
+          <summary class="flex items-center justify-between gap-4 p-5 sm:p-6 cursor-pointer list-none text-surface-text font-medium text-sm sm:text-base select-none">
+            <span>{faq.question}</span>
+            <svg
+              class="w-5 h-5 shrink-0 text-surface-muted transition-transform duration-300 group-open:rotate-45"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M12 5v14" stroke-linecap="round" /><path d="M5 12h14" stroke-linecap="round" />
+            </svg>
+          </summary>
+          <div class="px-5 sm:px-6 pb-5 sm:pb-6 text-surface-muted text-sm leading-relaxed -mt-1">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

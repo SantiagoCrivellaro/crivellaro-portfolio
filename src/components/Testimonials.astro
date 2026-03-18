@@ -1,0 +1,24 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import TestimonialCard from './TestimonialCard.astro';
+import testimonials from '../data/testimonials.json';
+---
+
+<section id="testimonials" class="py-20 lg:py-28 bg-surface-900/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="What Clients Say"
+      subtitle="Don't take my word for it — here's what businesses I've worked with have to say."
+    />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <TestimonialCard
+          quote={t.quote}
+          name={t.name}
+          role={t.role}
+          company={t.company}
+        />
+      ))}
+    </div>
+  </div>
+</section>

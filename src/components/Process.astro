@@ -1,0 +1,60 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Discovery Call',
+    description: 'Free 30-minute call to understand your business, pain points, and goals. I ask the right questions so I can design the right solution.',
+  },
+  {
+    number: '02',
+    title: 'Proposal & Roadmap',
+    description: 'You receive a clear proposal with scope, timeline, cost, and expected outcomes. No surprises, no hidden fees.',
+  },
+  {
+    number: '03',
+    title: 'Build & Iterate',
+    description: 'I build your solution in short sprints with regular check-ins. You see progress every week, not just at the end.',
+  },
+  {
+    number: '04',
+    title: 'Launch & Handoff',
+    description: 'Full deployment, documentation, and training for your team. I make sure everything works in production before I call it done.',
+  },
+  {
+    number: '05',
+    title: 'Ongoing Support',
+    description: 'Post-launch support to fix edge cases, optimize performance, and add improvements as your needs evolve.',
+  },
+];
+---
+
+<section id="process" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      title="How It Works"
+      subtitle="A transparent, proven process from first call to launch and beyond."
+    />
+    <div class="relative max-w-3xl mx-auto">
+      <!-- Vertical line -->
+      <div class="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/50 via-blue-500/50 to-purple-500/50" aria-hidden="true"></div>
+
+      <div class="space-y-10">
+        {steps.map((step, i) => (
+          <div class="relative flex gap-6 sm:gap-8 scroll-animate">
+            <!-- Number circle -->
+            <div class="relative z-10 w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-full bg-surface-900 border-2 border-cyan-500/40 flex items-center justify-center">
+              <span class="text-sm sm:text-base font-bold gradient-text">{step.number}</span>
+            </div>
+            <!-- Content -->
+            <div class="pt-2 sm:pt-3">
+              <h3 class="text-lg font-semibold text-surface-text mb-2">{step.title}</h3>
+              <p class="text-surface-muted text-sm leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+}
+
+const { quote, name, role, company } = Astro.props;
+
+const initials = name.split(' ').map((n) => n[0]).join('');
+---
+
+<blockquote class="card-base p-6 lg:p-8 scroll-animate flex flex-col group">
+  <!-- Quote icon -->
+  <svg class="w-8 h-8 text-cyan-500/30 mb-4 shrink-0 transition-colors duration-300 group-hover:text-cyan-500/50" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10H0z" />
+  </svg>
+  <p class="text-surface-muted text-sm leading-relaxed mb-6 flex-1">"{quote}"</p>
+  <footer class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white text-xs font-bold shrink-0" aria-hidden="true">
+      {initials}
+    </div>
+    <div>
+      <cite class="not-italic text-sm font-semibold text-surface-text block">{name}</cite>
+      <span class="text-xs text-surface-muted">{role}, {company}</span>
+    </div>
+  </footer>
+</blockquote>

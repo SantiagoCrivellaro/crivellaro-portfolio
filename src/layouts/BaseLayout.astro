@@ -1,0 +1,67 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Crivellaro | AI Automation & Custom AI Solutions',
+  description = 'Santiago Crivellaro — AI automation specialist. Custom chatbots, workflow automation, and intelligent solutions that save businesses time and money.',
+} = Astro.props;
+
+const ogImage = new URL('/images/og-image.svg', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-cyan-500 focus:text-surface-950 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold"
+    >
+      Skip to content
+    </a>
+    <slot />
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.scroll-animate').forEach((el, i) => {
+        (el as HTMLElement).style.transitionDelay = `${(i % 4) * 100}ms`;
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

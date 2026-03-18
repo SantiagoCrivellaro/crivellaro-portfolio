@@ -1,0 +1,242 @@
+---
+/**
+ * AI Chatbot Widget — powered by Cloudflare Workers AI (Llama 3.1)
+ * Calls /api/chat on Cloudflare Pages. Falls back to keyword-based
+ * responses during local development when the API isn't available.
+ */
+---
+
+<!-- Chat toggle button -->
+<button
+  id="chat-toggle"
+  type="button"
+  class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-500/30 hover:scale-110 hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer group"
+  aria-label="Open AI chatbot"
+>
+  <svg id="chat-icon-open" class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
+    <path d="M12 8V4H8" stroke-linecap="round" stroke-linejoin="round" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" stroke-linecap="round" /><path d="M20 14h2" stroke-linecap="round" /><path d="M15 13v2" stroke-linecap="round" /><path d="M9 13v2" stroke-linecap="round" />
+  </svg>
+  <svg id="chat-icon-close" class="w-6 h-6 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+    <path d="M18 6 6 18" stroke-linecap="round" stroke-linejoin="round" /><path d="m6 6 12 12" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  <span class="absolute left-full ml-3 bg-surface-900 text-surface-text text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 border border-surface-700">
+    Ask the AI assistant
+  </span>
+</button>
+
+<!-- Chat window -->
+<div
+  id="chat-window"
+  class="fixed bottom-24 left-6 z-50 w-[340px] sm:w-[380px] bg-surface-900 border border-surface-700 rounded-2xl shadow-2xl shadow-cyan-500/10 flex flex-col overflow-hidden opacity-0 pointer-events-none scale-95 transition-all duration-300 origin-bottom-left"
+  role="dialog"
+  aria-label="AI Chatbot"
+>
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-b border-surface-700 px-4 py-3 flex items-center gap-3">
+    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M12 8V4H8" stroke-linecap="round" stroke-linejoin="round" /><rect width="16" height="12" x="4" y="8" rx="2" />
+      </svg>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-surface-text">Crivellaro AI Assistant</p>
+      <p id="chat-status" class="text-xs text-cyan-400">Powered by AI — ask me anything!</p>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 max-h-80 min-h-[200px]">
+    <div class="flex gap-2">
+      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8V4H8" stroke-linecap="round" stroke-linejoin="round" /><rect width="16" height="12" x="4" y="8" rx="2" /></svg>
+      </div>
+      <div class="bg-surface-800 rounded-xl rounded-tl-sm px-3 py-2 text-sm text-surface-text max-w-[85%]">
+        Hey! I'm Santiago's AI assistant. I can answer questions about services, pricing, timelines, and more. What would you like to know?
+        <div class="mt-2 space-y-1.5">
+          <button type="button" class="chat-suggestion block w-full text-left text-xs bg-cyan-500/10 text-cyan-400 px-2.5 py-1.5 rounded-lg hover:bg-cyan-500/20 transition-colors cursor-pointer">What services do you offer?</button>
+          <button type="button" class="chat-suggestion block w-full text-left text-xs bg-cyan-500/10 text-cyan-400 px-2.5 py-1.5 rounded-lg hover:bg-cyan-500/20 transition-colors cursor-pointer">How much does a chatbot cost?</button>
+          <button type="button" class="chat-suggestion block w-full text-left text-xs bg-cyan-500/10 text-cyan-400 px-2.5 py-1.5 rounded-lg hover:bg-cyan-500/20 transition-colors cursor-pointer">Tell me about your process</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="border-t border-surface-700 p-3">
+    <form id="chat-form" class="flex gap-2">
+      <input
+        id="chat-input"
+        type="text"
+        placeholder="Type a message..."
+        class="flex-1 bg-surface-800 border border-surface-700 rounded-xl px-3 py-2 text-sm text-surface-text placeholder:text-surface-muted/50 focus:outline-none focus:border-cyan-500 transition-colors"
+        autocomplete="off"
+      />
+      <button type="submit" id="chat-submit" class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl px-3 py-2 hover:from-cyan-400 hover:to-blue-400 transition-all cursor-pointer" aria-label="Send message">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path d="m22 2-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round" /><path d="M22 2 11 13" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('chat-toggle')!;
+  const chatWindow = document.getElementById('chat-window')!;
+  const iconOpen = document.getElementById('chat-icon-open')!;
+  const iconClose = document.getElementById('chat-icon-close')!;
+  const messagesEl = document.getElementById('chat-messages')!;
+  const form = document.getElementById('chat-form') as HTMLFormElement;
+  const input = document.getElementById('chat-input') as HTMLInputElement;
+  const submitBtn = document.getElementById('chat-submit')!;
+  const statusEl = document.getElementById('chat-status')!;
+
+  let isOpen = false;
+  let isLoading = false;
+
+  // Conversation history for context
+  const history: Array<{ role: string; content: string }> = [];
+
+  // Fallback responses for local dev / API failure
+  const fallbacks: Record<string, string> = {
+    services: 'Santiago offers four core services:\n\n• Custom AI Chatbots\n• Workflow Automation\n• AI Strategy Consulting\n• Custom AI Development\n\nEach starts with a free discovery call!',
+    cost: 'Projects start at $500 for simple automations. A custom chatbot is typically $2,000. Enterprise solutions start at $5,000+.',
+    time: 'Most projects take 2-6 weeks. Simple automations under 2 weeks, complex systems 4-6 weeks.',
+    contact: 'Reach Santiago at crivellarosantiago1@gmail.com or WhatsApp +54 91131829560.',
+  };
+
+  function getFallback(msg: string): string {
+    const lower = msg.toLowerCase();
+    if (lower.match(/servic|offer|what do you/)) return fallbacks.services;
+    if (lower.match(/cost|price|how much|pricing/)) return fallbacks.cost;
+    if (lower.match(/long|time|timeline|when|fast|process/)) return fallbacks.time;
+    if (lower.match(/contact|email|reach|phone|whatsapp/)) return fallbacks.contact;
+    return "I'd recommend reaching out to Santiago directly — use the contact form or WhatsApp button on this page for a quick response!";
+  }
+
+  function escapeHtml(str: string): string {
+    const el = document.createElement('div');
+    el.textContent = str;
+    return el.innerHTML;
+  }
+
+  function addMessage(text: string, isUser: boolean) {
+    const wrapper = document.createElement('div');
+    wrapper.className = isUser ? 'flex justify-end' : 'flex gap-2';
+
+    if (isUser) {
+      wrapper.innerHTML = `<div class="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl rounded-tr-sm px-3 py-2 text-sm text-white max-w-[85%]">${escapeHtml(text)}</div>`;
+    } else {
+      wrapper.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+          <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8V4H8" stroke-linecap="round" stroke-linejoin="round" /><rect width="16" height="12" x="4" y="8" rx="2" /></svg>
+        </div>
+        <div class="bg-surface-800 rounded-xl rounded-tl-sm px-3 py-2 text-sm text-surface-text max-w-[85%] whitespace-pre-line">${escapeHtml(text)}</div>`;
+    }
+
+    messagesEl.appendChild(wrapper);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showTyping(): HTMLElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'flex gap-2';
+    wrapper.id = 'typing-indicator';
+    wrapper.innerHTML = `
+      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center shrink-0 mt-0.5">
+        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8V4H8" stroke-linecap="round" stroke-linejoin="round" /><rect width="16" height="12" x="4" y="8" rx="2" /></svg>
+      </div>
+      <div class="bg-surface-800 rounded-xl rounded-tl-sm px-3 py-2 text-sm text-surface-muted max-w-[85%] flex items-center gap-1">
+        <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+        <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+        <span class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+      </div>`;
+    messagesEl.appendChild(wrapper);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return wrapper;
+  }
+
+  function removeTyping() {
+    document.getElementById('typing-indicator')?.remove();
+  }
+
+  function setLoading(loading: boolean) {
+    isLoading = loading;
+    submitBtn.toggleAttribute('disabled', loading);
+    input.toggleAttribute('disabled', loading);
+    if (loading) {
+      statusEl.textContent = 'Thinking...';
+    } else {
+      statusEl.textContent = 'Powered by AI — ask me anything!';
+    }
+  }
+
+  async function sendMessage(text: string) {
+    if (isLoading) return;
+
+    addMessage(text, true);
+    history.push({ role: 'user', content: text });
+
+    setLoading(true);
+    const typing = showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+
+      removeTyping();
+
+      if (!res.ok) throw new Error('API error');
+
+      const data = await res.json();
+      const reply = data.response || getFallback(text);
+
+      addMessage(reply, false);
+      history.push({ role: 'assistant', content: reply });
+    } catch {
+      // Fallback to keyword-based responses (local dev or API down)
+      removeTyping();
+      const reply = getFallback(text);
+      addMessage(reply, false);
+      history.push({ role: 'assistant', content: reply });
+    }
+
+    setLoading(false);
+  }
+
+  // Toggle chat window
+  toggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      chatWindow.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+      input.focus();
+    } else {
+      chatWindow.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    }
+  });
+
+  // Form submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    sendMessage(text);
+  });
+
+  // Suggestion buttons
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest('.chat-suggestion') as HTMLElement | null;
+    if (btn) {
+      const text = btn.textContent?.trim();
+      if (text) sendMessage(text);
+    }
+  });
+</script>

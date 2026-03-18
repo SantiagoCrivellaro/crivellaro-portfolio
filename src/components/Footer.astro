@@ -1,0 +1,72 @@
+---
+import IconGithub from './icons/IconGithub.astro';
+import IconLinkedin from './icons/IconLinkedin.astro';
+import IconTwitter from './icons/IconTwitter.astro';
+import IconMail from './icons/IconMail.astro';
+
+const quickLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/SantiagoCrivellaro', Icon: IconGithub },
+  { label: 'LinkedIn', href: 'https://linkedin.com', Icon: IconLinkedin },
+  { label: 'Twitter', href: 'https://twitter.com', Icon: IconTwitter },
+  { label: 'Email', href: 'mailto:crivellarosantiago1@gmail.com', Icon: IconMail },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-surface-900 border-t border-surface-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <a href="#" class="text-xl font-bold gradient-text">Crivellaro</a>
+        <p class="mt-3 text-surface-muted text-sm max-w-xs">
+          Building intelligent automation solutions that transform how businesses operate.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-sm font-semibold text-surface-text uppercase tracking-wider mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          {quickLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-surface-muted hover:text-cyan-400 transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <h3 class="text-sm font-semibold text-surface-text uppercase tracking-wider mb-4">Connect</h3>
+        <div class="flex gap-4">
+          {socialLinks.map(({ label, href, Icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-surface-muted hover:text-cyan-400 transition-colors duration-200"
+              aria-label={label}
+            >
+              <Icon class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-surface-800 text-center text-sm text-surface-muted">
+      <p>&copy; {year} Crivellaro. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
