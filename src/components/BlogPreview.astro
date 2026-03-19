@@ -1,33 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import SectionHeading from './SectionHeading.astro';
 import Tag from './Tag.astro';
 
-const posts = [
-  {
-    slug: 'how-i-reduced-support-tickets-62-percent',
-    title: 'How I Reduced Support Tickets by 62% With a GPT Chatbot',
-    excerpt: 'A step-by-step breakdown of building an AI customer support bot for an e-commerce brand — from initial discovery to production deployment.',
-    date: '2026-02-15',
-    readTime: '8 min read',
-    tags: ['Case Study', 'Chatbots'],
-  },
-  {
-    slug: 'ai-automation-for-small-business',
-    title: '5 AI Automations Every Small Business Should Implement in 2026',
-    excerpt: 'You don\'t need a massive budget to benefit from AI. Here are five practical automations that pay for themselves within the first month.',
-    date: '2026-01-28',
-    readTime: '6 min read',
-    tags: ['Guide', 'Automation'],
-  },
-  {
-    slug: 'chatgpt-vs-claude-for-business',
-    title: 'ChatGPT vs Claude: Which AI Model Is Best for Your Business?',
-    excerpt: 'An honest comparison of GPT-4 and Claude for real-world business applications — cost, quality, speed, and when to use each.',
-    date: '2026-01-10',
-    readTime: '10 min read',
-    tags: ['Comparison', 'AI Models'],
-  },
-];
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -47,18 +25,18 @@ function formatDate(dateStr: string) {
           <div class="h-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500" aria-hidden="true"></div>
           <div class="p-6 flex flex-col flex-1">
             <div class="flex items-center gap-3 text-xs text-surface-muted mb-3">
-              <time datetime={post.date}>{formatDate(post.date)}</time>
+              <time datetime={post.data.date}>{formatDate(post.data.date)}</time>
               <span aria-hidden="true">&middot;</span>
-              <span>{post.readTime}</span>
+              <span>{post.data.readTime}</span>
             </div>
             <h3 class="text-lg font-semibold text-surface-text mb-3 group-hover:text-cyan-400 transition-colors leading-snug">
-              <a href={`/blog/${post.slug}`} class="hover:underline underline-offset-4">
-                {post.title}
+              <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="hover:underline underline-offset-4">
+                {post.data.title}
               </a>
             </h3>
-            <p class="text-surface-muted text-sm leading-relaxed mb-4 flex-1">{post.excerpt}</p>
+            <p class="text-surface-muted text-sm leading-relaxed mb-4 flex-1">{post.data.excerpt}</p>
             <div class="flex flex-wrap gap-2">
-              {post.tags.map((tag) => <Tag>{tag}</Tag>)}
+              {post.data.tags.map((tag: string) => <Tag>{tag}</Tag>)}
             </div>
           </div>
         </article>
