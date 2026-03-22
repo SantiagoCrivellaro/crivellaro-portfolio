@@ -3,7 +3,7 @@
     "slug": "ai-content-engine",
     "title": "AI Content Repurposing Engine",
     "subtitle": "Turning one blog post into content for 7 platforms in under 30 seconds",
-    "image": "/images/projects/content-engine.svg",
+    "image": "/images/projects/content-engine-cover.png",
     "tags": ["Mistral AI", "Python", "FastAPI", "n8n", "Railway"],
     "videoUrl": "",
     "client": "Internal Tool",
@@ -34,7 +34,7 @@
     "slug": "ai-lead-gen-agent",
     "title": "AI Lead Generation Agent",
     "subtitle": "From company URL to personalized outreach email in 10 seconds",
-    "image": "/images/projects/lead-gen-agent.svg",
+    "image": "/images/projects/lead-gen-cover.png",
     "tags": ["Mistral AI", "Python", "FastAPI", "Gmail API"],
     "videoUrl": "",
     "timeline": "3 weeks",
@@ -58,5 +58,37 @@
       "role": "Built as a portfolio showcase"
     },
     "techStack": ["Python", "FastAPI", "Mistral AI", "BeautifulSoup", "Gmail API", "Google OAuth2", "SQLite"]
+  },
+{
+  "slug": "ragmind-ai-assistant",
+  "title": "RAGmind — Personal AI Assistant",
+  "subtitle": "A self-hosted AI assistant that chats with your documents using any LLM provider",
+  "image": "/images/projects/ragmind-cover.png",
+  "tags": ["Python", "FastAPI", "ChromaDB", "RAG", "Multi-LLM"],
+  "videoUrl": "",
+  "client": "Internal Tool",
+  "industry": "Knowledge Management / AI",
+  "timeline": "6 weeks",
+  "problem": "Professionals drown in documents — PDFs, notes, code, research, internal wikis. When they need an answer, they spend 20-30 minutes digging through files. ChatGPT can't help because it doesn't know their private data. And cloud-based solutions mean sending confidential documents to third-party servers — a dealbreaker for lawyers, doctors, and security-conscious teams.",
+  "approach": [
+    "Built a full RAG (Retrieval-Augmented Generation) pipeline — documents are chunked, embedded with sentence-transformers, and stored in ChromaDB for instant cosine similarity search",
+    "Added support for 6 LLM providers (Groq, Claude, ChatGPT, Gemini, DeepSeek, Mistral) so users choose their preferred model — including free options",
+    "Designed a knowledge persistence layer — notes, URLs, and uploads survive database clears because they're saved as files, not just vectors",
+    "Implemented security from the ground up — bcrypt password hashing, Fernet-encrypted API keys at rest, session-based auth with httpOnly cookies, rate-limited login, and file upload validation",
+    "Added media generation capabilities — AI image generation (FLUX.1, DALL-E 3, Stability AI) and video generation (Kling, Replicate, Luma AI) with background processing and status tracking",
+    "Built a complete user experience — multiple profiles, conversation history, voice input/output, dark/light themes, mobile responsive design, analytics dashboard with token cost tracking"
+  ],
+  "results": [
+    { "metric": "6", "label": "LLM providers supported" },
+    { "metric": "100%", "label": "Data stays on your machine" },
+    { "metric": "< 2s", "label": "Document retrieval time" },
+    { "metric": "14+", "label": "File types supported for ingestion" }
+  ],
+  "testimonial": {
+    "quote": "RAGmind turns your scattered documents into an AI that actually knows your work. Ask it anything about your files, your notes, your research — it answers in seconds with source citations, using whatever LLM provider you prefer. No cloud, no subscriptions, completely private.",
+    "name": "Demo Project",
+    "role": "Built as a portfolio showcase"
+  },
+  "techStack": ["Python", "FastAPI", "ChromaDB", "Sentence-Transformers", "SQLite", "Groq", "Claude", "ChatGPT", "Gemini", "DALL-E 3", "FLUX.1", "Vanilla JS"]
   }
 ]
