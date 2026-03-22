@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://yourdomain.com',
+  site: 'https://santiagocrivellaro.github.io',
+  base: '/crivellaro-portfolio',
 
   vite: {
     plugins: [tailwindcss()],
