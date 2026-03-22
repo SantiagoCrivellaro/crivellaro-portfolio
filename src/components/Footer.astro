@@ -4,11 +4,12 @@ import IconLinkedin from './icons/IconLinkedin.astro';
 import IconTwitter from './icons/IconTwitter.astro';
 import IconMail from './icons/IconMail.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const quickLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services', href: `${base}#services` },
+  { label: 'Projects', href: `${base}#projects` },
+  { label: 'Pricing', href: `${base}#pricing` },
+  { label: 'Contact', href: `${base}#contact` },
 ];
 
 const socialLinks = [
@@ -26,7 +27,7 @@ const year = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Brand -->
       <div>
-        <a href="#" class="text-xl font-bold gradient-text">Crivellaro</a>
+        <a href={base} class="text-xl font-bold gradient-text">Crivellaro</a>
         <p class="mt-3 text-surface-muted text-sm max-w-xs">
           Building intelligent automation solutions that transform how businesses operate.
         </p>

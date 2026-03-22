@@ -107,4 +107,4 @@ The beauty of building on APIs is that you can swap models per task. Your system
 
 ## Need Help Deciding?
 
-Every business is different. The right model depends on your specific use case, volume, budget, and existing tech stack. [Book a free discovery call](/#contact) and I'll help you figure out the best approach for your situation — no commitment, no pitch, just honest advice.
+Every business is different. The right model depends on your specific use case, volume, budget, and existing tech stack. [Book a free discovery call](/crivellaro-portfolio/#contact) and I'll help you figure out the best approach for your situation — no commitment, no pitch, just honest advice.

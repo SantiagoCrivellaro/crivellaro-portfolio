@@ -87,4 +87,4 @@ After 30 days in production:
 
 If your support team is drowning in repetitive tickets, there's a good chance AI can help. The ROI on this project was realized within the first month — the client saved more on reduced support costs than the entire project fee.
 
-[Book a free discovery call](/contact) and let's see if your support workflow is a good fit for AI automation.
+[Book a free discovery call](/crivellaro-portfolio/#contact) and let's see if your support workflow is a good fit for AI automation.

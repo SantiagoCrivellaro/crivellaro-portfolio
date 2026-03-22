@@ -86,4 +86,4 @@ The best automation is the one that makes you say "I can't believe I used to do 
 
 ## Ready to Automate?
 
-If any of these sound like they'd transform your day-to-day, [let's talk](/#contact). I'll help you identify which automations will have the biggest impact on your specific business, and we'll build them together.
+If any of these sound like they'd transform your day-to-day, [let's talk](/crivellaro-portfolio/#contact). I'll help you identify which automations will have the biggest impact on your specific business, and we'll build them together.

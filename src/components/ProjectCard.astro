@@ -14,12 +14,13 @@ interface Props {
 }
 
 const { title, description, image, tags, liveUrl, videoUrl, slug } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <article class="card-base overflow-hidden scroll-animate group">
   <div class="aspect-video relative overflow-hidden bg-surface-800">
     <img
-      src={image}
+      src={image.startsWith('/') ? `${base}${image.slice(1)}` : image}
       alt={`Screenshot of ${title} project`}
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       loading="lazy"
@@ -30,7 +31,7 @@ const { title, description, image, tags, liveUrl, videoUrl, slug } = Astro.props
   <div class="p-6">
     <h3 class="text-lg font-semibold text-surface-text mb-2">
       {slug ? (
-        <a href={`/projects/${slug}`} class="hover:text-cyan-400 transition-colors">{title}</a>
+        <a href={`${base}projects/${slug}`} class="hover:text-cyan-400 transition-colors">{title}</a>
       ) : title}
     </h3>
     <p class="text-surface-muted text-sm leading-relaxed line-clamp-3 mb-4">{description}</p>
@@ -40,7 +41,7 @@ const { title, description, image, tags, liveUrl, videoUrl, slug } = Astro.props
     <div class="flex flex-wrap gap-3">
       {slug && (
         <a
-          href={`/projects/${slug}`}
+          href={`${base}projects/${slug}`}
           class="inline-flex items-center gap-1.5 text-sm text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
         >
           Read Case Study &rarr;
