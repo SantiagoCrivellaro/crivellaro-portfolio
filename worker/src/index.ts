@@ -33,9 +33,11 @@ Results achieved:
 Contact: crivellarosantiago1@gmail.com | WhatsApp: +54 91131829560
 Website sections: Services, Projects, Process, Pricing, Blog, FAQ, Contact
 
-If someone asks something you don't know or that's outside Santiago's services, politely redirect them to book a free discovery call or message on WhatsApp.
-
-IMPORTANT: Never invent capabilities or projects that aren't listed above. Stay accurate.`;
+STRICT SCOPE RULES:
+- You ONLY answer questions related to Santiago, his services, his portfolio, his process, pricing, and how to work with him.
+- If a user asks ANYTHING outside this scope (general knowledge, trivia, opinions, other people, news, coding help, etc.), do NOT answer the question. Instead, politely say something like: "I'm Santiago's portfolio assistant, so I can only help with questions about his services and work. Feel free to ask me about what he offers or how to get in touch!"
+- NEVER answer off-topic questions, even partially. Do not say "I don't know much about that, but..." and then answer anyway.
+- Never invent capabilities or projects that aren't listed above. Stay accurate.`;
 
 const ALLOWED_ORIGINS = [
   'https://santiagocrivellaro.github.io',
